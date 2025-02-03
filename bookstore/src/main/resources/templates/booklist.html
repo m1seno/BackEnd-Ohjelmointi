@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Book List</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <!-- Lisäsin koodiin vähän CSS:sää,
+         koska lopputulos oli niin karsean näköistä. -->
+        <style>
+            table {
+                width: 80%;
+                margin: auto;
+                border-collapse: collapse;
+            }
+            th, td {
+                border: 1px solid black;
+                padding: 10px;
+                text-align: center;
+            }
+            th {
+                background-color: #f2f2f2;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 style="text-align: center;">Library</h1>
+        <table>
+            <tr>
+                <th>Author</th>
+                <th>Title</th>
+                <th>ISBN</th>
+                <th>Publication Year</th>
+                <th>Price</th>
+            </tr>  
+            <tr th:each="book : ${books}">
+                <td th:text="${book.author}"></td>
+                <td th:text="${book.title}"></td>
+                <td th:text="${book.isbn}"></td>
+                <td th:text="${book.publicationYear}"></td>
+                <td th:text="${book.price + ' €'}"></td>
+            </tr>
+        </table>
+    </body>
+</html>
