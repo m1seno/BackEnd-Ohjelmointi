@@ -31,6 +31,7 @@
                 <th>Publication Year</th>
                 <th>Price</th>
                 <th>Delete book from database</th>
+                <th>Edit books</th>
             </tr>  
             <tr th:each="book : ${books}">
                 <td th:text="${book.author}"></td>
@@ -39,6 +40,8 @@
                 <td th:text="${book.publicationYear}"></td>
                 <td th:text="${book.price + ' €'}"></td>
                 <td><a th:href="@{/delete/{id}(id=${book.id})}">Delete</a></td>
+                <td><a th:href="@{/edit/{id}(id=${book.id})}">Edit</a></td>
+
             </tr>
         </table>
         <a href="/add">Add book</a>
