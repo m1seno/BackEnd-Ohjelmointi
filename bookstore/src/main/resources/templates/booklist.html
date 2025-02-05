@@ -1,49 +1,42 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <title>Book List</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <!-- Lisäsin koodiin vähän CSS:sää,
-         koska lopputulos oli niin karsean näköistä. -->
-        <style>
-            table {
-                width: 80%;
-                margin: auto;
-                border-collapse: collapse;
-            }
-            th, td {
-                border: 1px solid black;
-                padding: 10px;
-                text-align: center;
-            }
-            th {
-                background-color: #f2f2f2;
-            }
-        </style>
-    </head>
-    <body>
-        <h1 style="text-align: center;">Bookstore</h1>
-        <table>
-            <tr>
-                <th>Author</th>
-                <th>Title</th>
-                <th>ISBN</th>
-                <th>Publication Year</th>
-                <th>Price</th>
-                <th>Delete book from database</th>
-                <th>Edit books</th>
-            </tr>  
-            <tr th:each="book : ${books}">
-                <td th:text="${book.author}"></td>
-                <td th:text="${book.title}"></td>
-                <td th:text="${book.isbn}"></td>
-                <td th:text="${book.publicationYear}"></td>
-                <td th:text="${book.price + ' €'}"></td>
-                <td><a th:href="@{/delete/{id}(id=${book.id})}">Delete</a></td>
-                <td><a th:href="@{/edit/{id}(id=${book.id})}">Edit</a></td>
-
-            </tr>
-        </table>
-        <a href="/add">Add book</a>
-    </body>
+  <head>
+    <title>Book List</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="css/bootstrap.rtl.min.css"
+      th:href="@{css/bootstrap.rtl.min.css}"
+    />
+  </head>
+  <body>
+    <h1 style="text-align: center">Bookstore</h1>
+    <table class="table table-striped">
+      <tr>
+        <th>Author</th>
+        <th>Title</th>
+        <th>ISBN</th>
+        <th>Publication Year</th>
+        <th>Price</th>
+        <th>Actions</th>
+      </tr>
+      <tr th:each="book : ${books}">
+        <td th:text="${book.author}"></td>
+        <td th:text="${book.title}"></td>
+        <td th:text="${book.isbn}"></td>
+        <td th:text="${book.publicationYear}"></td>
+        <td th:text="${book.price + ' €'}"></td>
+        <td>
+          <a th:href="@{/delete/{id}(id=${book.id})}" class="btn btn-danger"
+            >Delete</a
+          >
+          <a th:href="@{/edit/{id}(id=${book.id})}" class="btn btn-primary"
+            >Edit</a
+          >
+        </td>
+      </tr>
+    </table>
+    <a href="/add" class="btn btn-success">Add book</a>
+  </body>
 </html>
