@@ -29,10 +29,16 @@ public class BookstoreApplication {
 			Category category1 = new Category("Fiction");
 			Category category2 = new Category("War");
 			Category category3 = new Category("Psychology");
+			Category category4 = new Category("History");
+			Category category5 = new Category("Science");
+			Category category6 = new Category("Biography");
 
 			cRepository.save(category1);
 			cRepository.save(category2);
 			cRepository.save(category3);
+			cRepository.save(category4);
+			cRepository.save(category5);
+			cRepository.save(category6);
 
 			bRepository.save(new Book("1984", "George Orwell", "9789510505830", 1949, 26.30, category1));
 			bRepository.save(new Book("Crime and Punishment", "Fyodor Dostoyevsky", "9780140449136", 1866, 25.10, category1));
