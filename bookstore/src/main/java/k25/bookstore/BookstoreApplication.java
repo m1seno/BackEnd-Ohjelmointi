@@ -6,6 +6,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import k25.bookstore.domain.AppUser;
 import k25.bookstore.domain.AppUserRepository;
@@ -42,6 +43,8 @@ public class BookstoreApplication {
 			cRepository.save(category5);
 			cRepository.save(category6);
 
+			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
 			bRepository.save(new Book("1984", "George Orwell", "9789510505830", 1949, 26.30, category1));
 			bRepository.save(new Book("Crime and Punishment", "Fyodor Dostoyevsky", "9780140449136", 1866, 25.10, category1));
 			bRepository.save(new Book("The Brothers Karmazov", "Fyodor Dostoyevsky", "9780140449242", 1880, 24.20, category1));
@@ -49,8 +52,8 @@ public class BookstoreApplication {
 			bRepository.save(new Book("The Coddling of the American Mind", "Jonathan Haidt", "9780735224896", 2018, 27.50, category3));
 			bRepository.save(new Book("Tuntematon Sotilas", "Väinö Linna", "2345098756785", 1954, 31.90, category2));
 
-			AppUser user1 = new AppUser("user", "user", "USER");
-			AppUser user2 = new AppUser("admin", "admin", "ADMIN");
+			AppUser user1 = new AppUser("user",passwordEncoder.encode("user"), "USER");
+			AppUser user2 = new AppUser("admin", passwordEncoder.encode("admin"), "ADMIN");
 			uRepository.save(user1);
 			uRepository.save(user2);
 
