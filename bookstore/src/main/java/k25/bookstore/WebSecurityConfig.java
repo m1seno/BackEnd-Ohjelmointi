@@ -33,6 +33,7 @@ public class WebSecurityConfig {
         http.authorizeHttpRequests(
             authorize -> authorize
             .requestMatchers(antMatcher("/css/**")).permitAll()
+            .requestMatchers(antMatcher("/images/**")).permitAll()
             .requestMatchers(WHITE_LIST_URLS).permitAll()
             .anyRequest().authenticated())
             .headers(headers ->

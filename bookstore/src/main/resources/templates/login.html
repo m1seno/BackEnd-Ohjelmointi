@@ -1,23 +1,82 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
-    <head>
-        <title>Bookstore login</title>
-        <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
-    </head>
-    <body>
-        <div class="col-md-4 col-md-offset-4">
-            <div class="alert alert-danger" th:if="${param.error}">
-                Invalid username and password.
-            </div>
-            <div class="alert alert-warning" th:if="${param.logout}">
-                You have been logged out.
-            </div>
-            <form th:action="@{/login}" method="post">
-                <div><label>Username : <input type="text" name="username" class="form-control"/> </label></div>
-                <div><label> Password: <input type="password" name="password" class="form-control"/> </label></div>
-                <div><input type="submit" value="Sign In" class="btn btn-primary"/> </div>
-            </form>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bookstore login</title>
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="/css/bootstrap.rtl.min.css"
+      th:href="@{/css/bootstrap.rlt.min.css}"
+    />
+
+    <style>
+      body {
+        background: url(/images/library.jpg) no-repeat center center fixed;
+        background-size: cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        color: white;
+      }
+
+      .login-container {
+        max-width: 400px;
+        background: rgba(0, 0, 0, 0.7);
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        text-align: center;
+      }
+
+      .login-container h2 {
+        margin-bottom: 20px;
+      }
+
+      .form-label {
+        color: white;
+      }
+
+      .btn-primary {
+        background-color: #ff6f61;
+        border: none;
+      }
+
+      .btn-primary:hover {
+        background-color: #e65c50;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-container">
+        <h2>Please sign in</h2>
+
+        <div class="alert alert-danger" th:if="${param.error}">
+            Invalid username or password.
         </div>
-    </body>
+        <div class="alert alert-warning" th:if="${param.logout}">
+            You have been logged out.
+        </div>
+
+        <form th:action="@{/login}" method="post">
+            <div class="mb-3">
+                <label for="username" class="form-label">Username:</label>
+                <input type="text" id="username" name="username" class="form-control" required/>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password:</label>
+                <input type="password" id="password" name="password" class="form-control" required/>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-primary w-100">Log In</button>
+            </div>
+        </form>
+    </div>
+</body>
 </html>
