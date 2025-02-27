@@ -7,6 +7,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import k25.bookstore.domain.AppUser;
+import k25.bookstore.domain.AppUserRepository;
 import k25.bookstore.domain.Book;
 import k25.bookstore.domain.BookRepository;
 import k25.bookstore.domain.Category;
@@ -22,7 +24,7 @@ public class BookstoreApplication {
 	}
 
 	@Bean
-	public CommandLineRunner bookstoreDemo(BookRepository bRepository, CategoryRepository cRepository) {
+	public CommandLineRunner bookstoreDemo(BookRepository bRepository, CategoryRepository cRepository, AppUserRepository uRepository) {
 		return (args) -> {
 			log.info("save some books");
 
@@ -46,6 +48,12 @@ public class BookstoreApplication {
 			bRepository.save(new Book("All the Light We Cannot See", "Anthony Doerr", "9780007548699", 2015, 25.00, category1));
 			bRepository.save(new Book("The Coddling of the American Mind", "Jonathan Haidt", "9780735224896", 2018, 27.50, category3));
 			bRepository.save(new Book("Tuntematon Sotilas", "Väinö Linna", "2345098756785", 1954, 31.90, category2));
+
+			AppUser user1 = new AppUser("user", "user", "USER");
+			AppUser user2 = new AppUser("admin", "admin", "ADMIN");
+			uRepository.save(user1);
+			uRepository.save(user2);
+
 
 			log.info("fetch all books");
 			for (Book book : bRepository.findAll()) {
