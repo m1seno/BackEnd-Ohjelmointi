@@ -17,7 +17,7 @@ class BookstoreApplicationTests {
 	}
 
 	@Test
-	public void testDatabaseConnection(){
+	public void testDatabaseConnection() {
 		assertThat(bookRepository).isNotNull();
 		assertThat(bookRepository.count()).isNotNull();
 	}
